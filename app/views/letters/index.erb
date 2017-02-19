@@ -1,7 +1,7 @@
 <h1>This is a page to accept letters for app for ma babes!</h1>
 
-<h2>Here are the percentages of letters using the words submitted so far...</h2>
-<% @letters.each do |letter| %>
+<h2>Here are the count of letters using the words submitted so far...</h2>
+<% @letters.sort_by{|l| l.letter}.each do |letter| %>
 <%= "#{letter.letter} =>  #{letter.count}" %>
 <% end %>
 
