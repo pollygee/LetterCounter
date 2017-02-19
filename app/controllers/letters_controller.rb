@@ -4,5 +4,10 @@ class LettersController < ApplicationController
   end
 
   def index
+    @letter = Letter.new
+  end
+
+  def create
+    
   end
 end
