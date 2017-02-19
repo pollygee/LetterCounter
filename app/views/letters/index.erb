@@ -1,7 +1,12 @@
-<h2>This is a page to accept letters for app for ma babes!</h2>
+<h1>This is a page to accept letters for app for ma babes!</h1>
+
+<h2>Here are the percentages of letters using the words submitted so far...</h2>
+<% @letters.each do |letter| %>
+<%= "#{letter.letter} =>  #{letter.count}" %>
+<% end %>
 
 
-
+<h2>Submit some more words</h2>
 <%= form_for @letter do |f| %>
   <%= f.label :words %>
   <%= f.text_area :words, size: "70x10" %>

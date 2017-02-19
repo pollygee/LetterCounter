@@ -5,15 +5,20 @@ class LettersController < ApplicationController
 
   def index
     @letter = Letter.new
+    @letters = Letter.all
   end
 
   def create
     words = params.fetch("letter")["words"]
     letters_array = words.split("")
+    ingorable_letters = [" ", "'", '"', ",", "!", "."]
     letters_array.each do |letter|
-      object = Letter.where(letter: letter).first_or_create!
+      next if ingorable_letters.include? letter
+      object = Letter.where(letter: letter.upcase).first_or_create!
       object.count += 1
       object.save
     end
+
+    redirect_to letters_path
   end
 end
