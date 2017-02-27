@@ -14,7 +14,7 @@ class LettersController < ApplicationController
     letters_array = words.split("")
     ingorable_letters = [" ", "'", '"', ",", "!", ".", "'"]
     letters_array.each do |letter|
-      next if ingorable_letters.include? letter
+      next unless letter =~ /[a-zA-Z]/
       object = Letter.where(letter: letter.upcase).first_or_create!
       object.count += 1
       object.save

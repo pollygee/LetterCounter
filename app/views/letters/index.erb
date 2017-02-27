@@ -2,8 +2,9 @@
 
 <h2>Here are the count of letters using the words submitted so far...</h2>
 <% @letters.sort_by{|l| l.letter}.each do |letter| %>
-<% letter_percentage = (letter.count.to_f / @total_letter_count) * 100 %>
-<%= "#{letter.letter} =>  #{letter_percentage}" %>
+  <% next unless letter.letter =~ /[a-zA-Z]/ %>
+  <% letter_percentage = (letter.count.to_f / @total_letter_count) * 100 %>
+  <%= "#{letter.letter} =>  #{letter_percentage}" %>
 <% end %>
 
 
