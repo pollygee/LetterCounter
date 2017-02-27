@@ -1,13 +1,22 @@
 <h1>This is a page to accept letters for app for ma babes!</h1>
 
 <h2>Here are the count of letters using the words submitted so far...</h2>
-<% @letters.sort_by{|l| l.letter}.each do |letter| %>
-  <% next unless letter.letter =~ /[a-zA-Z]/ %>
-  <% letter_percentage = (letter.count.to_f / @total_letter_count) * 100 %>
-  <%= "#{letter.letter} =>  #{letter_percentage}" %>
+
+<table>
+  <tr>
+    <th>Letter</th>
+    <th>Count</th>
+  </tr>
+  <% @letters.sort_by{|l| l.letter}.each do |letter| %>
+    <% next unless letter.letter =~ /[a-zA-Z]/ %>
+    <% letter_percentage = (letter.count.to_f / @total_letter_count) * 100 %>
+    <tr>
+      <td> <%= letter.letter %> </td>
+      <td> <%= letter_percentage.round(2) %> </td>
+    </tr>
 <% end %>
 
-
+</table>
 <h2>Submit some more words</h2>
 <%= form_for @letter do |f| %>
   <%= f.label :words %>
